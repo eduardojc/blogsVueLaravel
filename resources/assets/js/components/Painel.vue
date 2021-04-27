@@ -39,4 +39,8 @@
         background-color: #a34a0e;
         border-color: #ecb69d;
     }
+
+    .panel-heading {
+        font-size: 20px !important;
+    }
 </style>
