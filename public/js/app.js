@@ -47381,8 +47381,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.buscar) {
 
                 return this.itens.filter(function (res) {
+                    res = Object.values(res);
                     for (var k = 0; k < res.length; k++) {
-                        if ((Object.values(res)[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
+                        if ((res[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
                             return true;
                         }
                     }
@@ -47980,9 +47981,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['nome']
+    props: ['nome', 'titulo']
 });
 
 /***/ }),
@@ -48006,9 +48016,52 @@ var render = function() {
       }
     },
     [
-      _c("div", { staticClass: "modal-dialog modal-lg" }, [
-        _c("div", { staticClass: "modal-content" }, [_vm._t("default")], 2)
-      ])
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-lg", attrs: { role: "dialog" } },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c("h5", { staticClass: "modal-title" }, [
+                _vm._v(_vm._s(_vm.titulo))
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "close",
+                  attrs: {
+                    type: "button",
+                    "data-bs-dismiss": "modal",
+                    "aria-label": "close"
+                  }
+                },
+                [_vm._v(" X ")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [_vm._t("default")], 2),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "modal-footer" },
+              [
+                _vm._t("botoes"),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-bs-dismiss": "modal" }
+                  },
+                  [_vm._v("Close")]
+                )
+              ],
+              2
+            )
+          ])
+        ]
+      )
     ]
   )
 }
