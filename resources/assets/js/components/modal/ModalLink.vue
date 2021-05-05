@@ -17,10 +17,17 @@
 
 <script>
     export default {
-        props: ['tipo','nome','titulo','css','item'],
+        props: ['tipo','nome','titulo','css','item','url'],
         methods: {
             preencheForm: function() {
-                this.$store.commit('setItem',this.item);
+
+                // metodo para requisitar via http axios
+                axios.get(this.url + this.item.id).then(res => {
+                    // console.log(res.data);
+                    this.$store.commit('setItem',res.data);
+                });
+
+                //this.$store.commit('setItem',this.item);
             }
         }
     }

@@ -3,15 +3,15 @@
         <div class="modal-dialog modal-lg" role="dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ titulo }}</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="close"> X </button>
+                    <h3 class="modal-title" style="display: inline-block; float: left">{{ titulo }}</h3>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="close" @click="fecharModal()"> X </button>
                 </div>
                 <div class="modal-body">
                     <slot></slot>
                 </div>
                 <div class="modal-footer">
                     <slot name="botoes"></slot>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="fecharModal()">Close</button>
                 </div>
             </div>
         </div>
@@ -22,5 +22,10 @@
 <script>
     export default {
         props: ['nome','titulo'],
+        methods: {
+            fecharModal: function() {
+                $('#' + this.nome).modal('hide');
+            }
+        }
     }
 </script>

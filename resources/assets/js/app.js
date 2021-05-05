@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.$ = window.jQuery = require('jquery');
+
 import Vuex from 'Vuex';
 
 Vue.use(Vuex);
@@ -44,5 +46,8 @@ Vue.component('modallink', require('./components/modal/ModalLink.vue'));
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    mounted: function() {
+        document.getElementById('app').style.display = "block";
+    }
 });
