@@ -24,21 +24,18 @@
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" :value="token">
 
-                            <a v-if="editar && !modal" :href="editar">Editar |</a>
                             <modallink v-if="editar && modal" :item="item" :url="editar" tipo="link" nome="editar" titulo="Editar |" css="link"></modallink>
                             <modallink v-if="detalhe && modal" :item="item" :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css="link"></modallink>
                             <a @click="executaForm(index)" href="#">Deletar</a>
                         </form>
-                        <span v-if="!token">
-                            <a v-if="editar && !modal" :href="editar">Editar |</a>
+                        <span v-if="!token && !deletar">
+                            <modallink v-if="editar && modal" :item="item" :url="editar" tipo="link" nome="editar" titulo="Editar |" css="link"></modallink>
+                            <modallink v-if="detalhe" :item="item" :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe" css="link"></modallink>
+                        </span>
+                        <span v-if="!token && deletar">
                             <modallink v-if="editar && modal" :item="item" tipo="link" :url="editar" nome="editar" titulo="Editar |" css="link"></modallink>
                             <modallink v-if="detalhe && !modal" :item="item" :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe |" css="link"></modallink>
                             <a v-if="deletar" :href="deletar">Deletar</a>
-                        </span>
-                        <span v-if="!token && !deletar">
-                            <a v-if="editar && !modal" :href="editar">Editar |</a>
-                            <modallink v-if="editar && modal" :item="item" :url="editar" tipo="link" nome="editar" titulo="Editar |" css="link"></modallink>
-                            <modallink v-if="detalhe" :item="item" :url="detalhe" tipo="link" nome="detalhe" titulo="Detalhe" css="link"></modallink>
                         </span>
                     </td>
                 </tr>

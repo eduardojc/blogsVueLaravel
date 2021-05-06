@@ -47325,9 +47325,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemcol', 'modal'],
@@ -47523,12 +47520,6 @@ var render = function() {
                               domProps: { value: _vm.token }
                             }),
                             _vm._v(" "),
-                            _vm.editar && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.editar } }, [
-                                  _vm._v("Editar |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
                             _vm.editar && _vm.modal
                               ? _c("modallink", {
                                   attrs: {
@@ -47572,16 +47563,44 @@ var render = function() {
                         )
                       : _vm._e(),
                     _vm._v(" "),
-                    !_vm.token
+                    !_vm.token && !_vm.deletar
                       ? _c(
                           "span",
                           [
-                            _vm.editar && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.editar } }, [
-                                  _vm._v("Editar |")
-                                ])
+                            _vm.editar && _vm.modal
+                              ? _c("modallink", {
+                                  attrs: {
+                                    item: item,
+                                    url: _vm.editar,
+                                    tipo: "link",
+                                    nome: "editar",
+                                    titulo: "Editar |",
+                                    css: "link"
+                                  }
+                                })
                               : _vm._e(),
                             _vm._v(" "),
+                            _vm.detalhe
+                              ? _c("modallink", {
+                                  attrs: {
+                                    item: item,
+                                    url: _vm.detalhe,
+                                    tipo: "link",
+                                    nome: "detalhe",
+                                    titulo: "Detalhe",
+                                    css: "link"
+                                  }
+                                })
+                              : _vm._e()
+                          ],
+                          1
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !_vm.token && _vm.deletar
+                      ? _c(
+                          "span",
+                          [
                             _vm.editar && _vm.modal
                               ? _c("modallink", {
                                   attrs: {
@@ -47612,46 +47631,6 @@ var render = function() {
                               ? _c("a", { attrs: { href: _vm.deletar } }, [
                                   _vm._v("Deletar")
                                 ])
-                              : _vm._e()
-                          ],
-                          1
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !_vm.token && !_vm.deletar
-                      ? _c(
-                          "span",
-                          [
-                            _vm.editar && !_vm.modal
-                              ? _c("a", { attrs: { href: _vm.editar } }, [
-                                  _vm._v("Editar |")
-                                ])
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.editar && _vm.modal
-                              ? _c("modallink", {
-                                  attrs: {
-                                    item: item,
-                                    url: _vm.editar,
-                                    tipo: "link",
-                                    nome: "editar",
-                                    titulo: "Editar |",
-                                    css: "link"
-                                  }
-                                })
-                              : _vm._e(),
-                            _vm._v(" "),
-                            _vm.detalhe
-                              ? _c("modallink", {
-                                  attrs: {
-                                    item: item,
-                                    url: _vm.detalhe,
-                                    tipo: "link",
-                                    nome: "detalhe",
-                                    titulo: "Detalhe",
-                                    css: "link"
-                                  }
-                                })
                               : _vm._e()
                           ],
                           1
