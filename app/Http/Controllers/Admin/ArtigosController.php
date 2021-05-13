@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\Artigo;
+use App\User;
+use Auth;
 
 class ArtigosController extends Controller
 {
@@ -16,11 +19,17 @@ class ArtigosController extends Controller
     public function index()
     {
         $migalhas = json_encode([
-            ["titulo"=>"Home","url"=>route('home')],
+            ["titulo"=>"Admin","url"=>route('admin')],
             ["titulo" =>"Lista de Artigos","url"=>""]
         ]);
 
-        $listaArtigos = Artigo::select('id','titulo','descricao','data')->paginate(15);
+        // $listaArtigos = Artigo::select('id','titulo','descricao','user_id','data')->paginate(15);
+
+        // foreach($listaArtigos as $key => $artigo) {
+        //     $artigo->user_id = User::find($artigo->user_id)->name;
+        // }
+
+        $listaArtigos = Artigo::listaArtigos(5);
 
         return view('admin.artigos.index',compact('migalhas','listaArtigos'));
     }
@@ -56,8 +65,9 @@ class ArtigosController extends Controller
         if($validacao->fails()) {
             return redirect()->back()->withErrors($validacao)->withInput();
         }
-        
-        Artigo::create($data);
+
+        $user = Auth::user();
+        $user->artigos()->create($data);
 
         return redirect()->back();
     }
@@ -105,8 +115,9 @@ class ArtigosController extends Controller
         if($validacao->fails()) {
             return redirect()->back()->withErrors($validacao)->withInput();
         }
-        
-        Artigo::find($id)->update($data);
+         
+        $user = Auth::user();
+        $user->artigos()->find($id)->update($data);
 
         return redirect()->back();
     }

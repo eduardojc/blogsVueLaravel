@@ -18,7 +18,7 @@
             </thead>
             <tbody>
                 <tr :key="index" v-for="(item, index) in lista">
-                    <td :key="i" v-for="i in item">{{i}}</td>
+                    <td :key="i" v-for="i in item">{{ i | formataData }}</td>
                     <td v-if="detalhe || editar || deletar">
                         <form :id="index" v-if="deletar && token" :action="deletar + item.id" method="post">
                             <input type="hidden" name="_method" value="DELETE">
@@ -66,6 +66,20 @@
                 } else {
                     this.ordemAux = 'asc';
                 }
+           }
+       },
+       filters: {
+           formataData: function(valor){
+               
+                if(!valor) return '';
+                valor = valor.toString();
+                if(valor.split('-').length == 3) {
+                    valor = valor.split('-');
+
+                    return valor[2] + '/' + valor[1] + '/' + valor[0];
+                }
+
+               return valor;
            }
        },
        computed: {

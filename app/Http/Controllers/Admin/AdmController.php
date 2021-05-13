@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 
 use App\User;
 
-class UsuariosController extends Controller
+class AdmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +19,13 @@ class UsuariosController extends Controller
     {
         $migalhas = json_encode([
             ["titulo"=>"Admin","url"=>route('admin')],
-            ["titulo" =>"Lista de Usuários","url"=>""]
+            ["titulo" =>"Lista de Administradores","url"=>""]
         ]);
 
-        $listaModelo = User::select('id','name','email')->paginate(15);
+        $listaModelo = User::select('id','name','email','autor','admin')
+            ->where('admin','S')->paginate(5);
 
-        return view('admin.usuarios.index',compact('migalhas','listaModelo'));
+        return view('admin.adm.index',compact('migalhas','listaModelo'));
     }
 
     /**
@@ -62,6 +63,7 @@ class UsuariosController extends Controller
         User::create($data);
 
         return redirect()->back();
+
     }
 
     /**

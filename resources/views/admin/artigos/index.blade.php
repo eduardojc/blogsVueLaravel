@@ -18,9 +18,9 @@
             <migalhas :lista="{{$migalhas}}"></migalhas>
             
             <tabela-lista 
-                :titulos="['#','Titulo','Descrição','Data']"
+                :titulos="['#','Titulo','Descrição','Autor','Data']"
                 :itens="{{ json_encode($listaArtigos) }}"
-                ordem="asc" ordemcol="1"
+                ordem="desc" ordemcol="0"
                 criar="#new" 
                 detalhe="/blogs/public/admin/artigos/" 
                 editar="/blogs/public/admin/artigos/" 
@@ -47,12 +47,22 @@
                 <input type="text" class="form-control" id="descricao" name="descricao" placeholder="Descrição..." value="{{old('descricao')}}">
             </div>
             <div class="form-group">
-                <label for="conteudo">Conteúdo</label>
-                <textarea id="conteudo" name="conteudo" class="form-control">{{old('conteudo')}}</textarea>
+                <label for="addConteudo">Conteúdo</label>
+                {{-- <textarea id="conteudo" name="conteudo" class="form-control">{{old('conteudo')}}</textarea> --}}
+                <ckeditor
+                    id="addConteudo"
+                    name="conteudo"
+                    value="{{old('conteudo')}}"
+                    :config="{
+                        toolbar: [
+                        [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ]],
+                        height: 200
+                    }">
+                </ckeditor>
             </div>
             <div class="form-group">
                 <label for="data">Data</label>
-                <input type="datetime-local" class="form-control" id="data" name="data" value="{{old('data')}}">
+                <input type="date" class="form-control" id="data" name="data" value="{{old('data')}}">
             </div>
         </formulario>
         <span slot="botoes">
@@ -64,19 +74,29 @@
         <formulario id="formEditar" css="" :action="'https://localhost/blogs/public/admin/artigos/' + $store.state.item.id" method="put" token="{{ csrf_token() }}">
             <div class="form-group">
                 <label for="titulo">Titulo</label>
-                <input type="text" class="form-control" id="titulo" v-model="$store.state.item.titulo" name="titulo" placeholder="Título">
+                <input type="text" class="form-control" id="editTitulo" v-model="$store.state.item.titulo" name="titulo" placeholder="Título">
             </div>
             <div class="form-group">
                 <label for="descricao">Descrição</label>
-                <input type="text" class="form-control" id="descricao" v-model="$store.state.item.descricao" name="descricao" placeholder="Descrição...">
+                <input type="text" class="form-control" id="editDescricao" v-model="$store.state.item.descricao" name="descricao" placeholder="Descrição...">
             </div>
             <div class="form-group">
                 <label for="conteudo">Conteúdo</label>
-                <textarea id="conteudo" name="conteudo" class="form-control" v-model="$store.state.item.conteudo"></textarea>
+                {{-- <textarea id="editconteudo" name="conteudo" class="form-control" v-model="$store.state.item.conteudo"></textarea> --}}
+                <ckeditor
+                    id="editConteudo"
+                    name="conteudo"
+                    v-model="$store.state.item.conteudo"
+                    :config="{
+                        toolbar: [
+                        [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript' ]],
+                        height: 200
+                    }">
+                </ckeditor>
             </div>
             <div class="form-group">
                 <label for="data">Data</label>
-                <input type="datetime-local" class="form-control" id="data" name="data" v-model="$store.state.item.data">
+                <input type="date" class="form-control" id="data" name="data" v-model="$store.state.item.data">
             </div>
         </formulario>
         <span slot="botoes">

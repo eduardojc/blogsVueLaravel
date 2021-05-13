@@ -18,5 +18,8 @@
         "lodash": "^4.17.4",
         "vue": "^2.5.7",
         "vuex": "^3.6.2"
+    },
+    "dependencies": {
+        "vue-ckeditor2": "^2.1.5"
     }
 }

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+use App\Artigo;
+use App\User ;
+
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,9 +27,14 @@ class HomeController extends Controller
     public function index()
     {
         $migalhas = json_encode([
-            ["titulo"=>"Home","url"=>""]
+            ["titulo"=>"Admin","url"=>""]
         ]);
 
-        return view('home', compact('migalhas'));
+        $qtdArtigo = Artigo::count();
+        $qtdUser = User::count();
+        $qtdAutor = User::where('autor','S')->count();
+        $qtdAdmin = User::where('admin','S')->count();
+
+        return view('admin', compact('migalhas','qtdArtigo','qtdAutor','qtdUser','qtdAdmin'));
     }
 }

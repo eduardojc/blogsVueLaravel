@@ -10,7 +10,9 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.$ = window.jQuery = require('jquery');
 
+import Vue from 'vue';
 import Vuex from 'Vuex';
+import ckeditor from 'vue-ckeditor2';
 
 Vue.use(Vuex);
 
@@ -40,8 +42,11 @@ Vue.component('pagina', require('./components/Pagina.vue'));
 Vue.component('tabela-lista', require('./components/TabelaLista.vue'));
 Vue.component('migalhas', require('./components/Migalhas.vue'));
 Vue.component('formulario', require('./components/Formulario.vue'));
+Vue.component('artigocard', require('./components/CardArtigo.vue'))
 Vue.component('modal', require('./components/modal/Modal.vue'));
 Vue.component('modallink', require('./components/modal/ModalLink.vue'));
+
+// Vue.component('ckeditor', require('vue-ckeditor2'));
 
 
 const app = new Vue({
@@ -49,5 +54,8 @@ const app = new Vue({
     store,
     mounted: function() {
         document.getElementById('app').style.display = "block";
+    },
+    components: {
+        ckeditor,
     }
 });
